@@ -1,6 +1,6 @@
 /*
 author: markus
-  date: 2015-11-25
+  date: 2015-11-26
 */
 
 #include <cmath>
@@ -11,17 +11,17 @@ using namespace std;
 int main(){
 
 	const double pi = acos(-1);
-	const int N = 200;				// number of steps
+	const int N = 2000;				// number of steps
 	const int n = 2;				// length of array
-	const double dt=pi/10;
+	const double dt=pi/100;				// step length
 
 	double y = 1;
-	double f[n];
-	double b[n];
+	double f[n];					// forward array
+	double b[n];					// backward array
 
-	double temp[n];
+	double temp[n];					// temprorary array
 
-	f[0]=1;						//initial conditions
+	f[0]=1;						// initial conditions
 	f[1]=0;
 	b[0]=1;
 	b[1]=0;
@@ -38,7 +38,7 @@ int main(){
 		f[0] = temp[0];
 		f[1] = temp[1];
 
-		temp[0] = (b[0]+b[1]*dt)/(1-dt*dt);
+		temp[0] = (b[0]+b[1]*dt)/(1+dt*dt);
 		temp[1] = b[1] - dt*(b[0]+b[1]*dt)/(1+dt*dt);
 
 		b[0] = temp[0];
